@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 import List from './List.js';
 import GoogleAPI from './GoogleAPI.js';
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import escapeRegExp from 'escape-string-regexp'
-import sortBy from 'sort-by'
+// import sortBy from 'sort-by'
 
 class App extends Component {
 
@@ -15,10 +15,10 @@ class App extends Component {
         "title": {
           "CHN": "东京站",
           "JPN": "東京駅",
-          "EN": "tokyo"
+          "EN": "tokyo station"
         },
-        "map": "map",
-        "positon": {
+        "map": "",
+        "position": {
           "lat": 35.681167,
           "lng": 139.7670516
         }
@@ -28,10 +28,10 @@ class App extends Component {
         "title": {
           "CHN": "新宿站",
           "JPN": "新宿駅",
-          "EN": "sinjuku"
+          "EN": "sinjuku station"
         },
-        "map": "map",
-        "positon": {
+        "map": "",
+        "position": {
           "lat": 35.6895924,
           "lng": 139.7004131
         }
@@ -41,10 +41,10 @@ class App extends Component {
         "title": {
           "CHN": "池袋站",
           "JPN": "池袋駅",
-          "EN": "ikebukuro"
+          "EN": "ikebukuro station"
         },
-        "map": "map",
-        "positon": {
+        "map": "",
+        "position": {
           "lat": 35.7295028,
           "lng": 139.7109001
         }
@@ -54,10 +54,10 @@ class App extends Component {
         "title": {
           "CHN": "涩谷站",
           "JPN": "渋谷駅",
-          "EN": "shibuya"
+          "EN": "shibuya station"
         },
-        "map": "map",
-        "positon": {
+        "map": "",
+        "position": {
           "lat": 35.6580339,
           "lng": 139.7016358
         }
@@ -67,10 +67,10 @@ class App extends Component {
         "title": {
           "CHN": "原宿站",
           "JPN": "原宿駅",
-          "EN": "harajuku"
+          "EN": "harajuku station"
         },
-        "map": "map",
-        "positon": {
+        "map": "",
+        "position": {
           "lat": 35.6702285,
           "lng": 139.7026976
         }
@@ -80,10 +80,10 @@ class App extends Component {
         "title": {
           "CHN": "银座站",
           "JPN": "銀座駅",
-          "EN": "ginza"
+          "EN": "ginza station"
         },
-        "map": "map",
-        "positon": {
+        "map": "",
+        "position": {
           "lat": 35.6717519,
           "lng": 139.7643082
         }
@@ -92,7 +92,7 @@ class App extends Component {
     init: {
       lat: 35.7052158,
       lng: 139.7828336,
-      zoom: 14
+      zoom: 13
     },
     listData:[]
   }
@@ -101,14 +101,14 @@ class App extends Component {
     var dataInList;
     const match = new RegExp(escapeRegExp(query), 'i');
 
-    if (query!="") {
-      dataInList = originData.filter((data) => match.test(data.title.EN+data.title.CHN+data.title.JPN));
+    if (query!=="") {
+      dataInList = originData.filter(
+        (data) => match.test(data.title.EN+data.title.CHN+data.title.JPN));
       this.setState({
         listData: dataInList
       })
-      console.log(dataInList)
-
-    } else {
+    } 
+    else {
       this.setState({
         listData: originData
       })
@@ -118,11 +118,35 @@ class App extends Component {
       })
     }
 
-  clearQuery = () => {
-    this.setState({
-      query: ""
-    })
-  }
+
+    showAPI(marker, infowindow) {
+        let searchedForText = marker.title.EN;
+        fetch(`http://api.nytimes.com/svc/search/v2/articlesearch.json?q=${searchedForText}&api-key=ed11ce69c5b2490e9a4c4e41e1aa686d`, {
+            // headers: {
+            //     Authorization: 'Client-ID bd18852d92f956937def8d7f0ab0f6d3fc1acf00cf096af4f143e2f1fd66fef0'
+            // }
+        }).then(response => response.json()).then(addArticles).catch(e => requestArticleError);
+
+        function addArticles(data) {
+            let htmlContent = '';
+            // const data = JSON.parse(this.responseText);
+            if (data.response && data.response.docs && data.response.docs.length > 1) {
+                htmlContent = '<ul>' + data.response.docs.map(article => `<li class="article"> 
+                    <h2><a href="${article.web_url}">${article.headline.main}</a></h2>
+                    <p>${article.snippet}</p>
+                    </li>`).join('') + '</ul>';
+
+            } else {
+                htmlContent = ` < div class = "error-no-articles" > No articles available < /div>`;
+            }
+            infowindow.setContent(htmlContent);
+        };
+
+        function requestArticleError(e, part) {
+            console.log(e);
+            infowindow.setContent(`<p class="network-warning">There was an error making a request for the ${part}.</p>`);
+        };
+}
 
   render() {
     return ( 
@@ -136,12 +160,20 @@ class App extends Component {
             listData = {this.state.listData} 
             init = { this.state.init } 
             query = {this.state.query}
-            updateQuery = {this.updateQuery}/>
+            updateQuery = {this.updateQuery}
+            clearQuery = {this.clearQuery}
+            showAPI = {this.showAPI}
+            />
             <GoogleAPI 
             originData = { this.state.data } 
             init = { this.state.init } 
             query = {this.state.query}
-            listData = {this.state.listData}/> 
+            listData = {this.state.listData}
+            updateQuery={this.updateQuery}
+            clearQuery={this.clearQuery}
+            showWiki={this.showWiki}
+            showAPI = {this.showAPI}
+            /> 
           </div>
         </div>
       </div>

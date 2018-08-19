@@ -1,158 +1,224 @@
 .App {
-    text-align: center;
-    width: 100%;
-    height: 740px;
-    background-color: #ebeff3;
-    box-sizing: border-box;
+  text-align: center;
+  width: 100%;
+  height: 740px;
+  background-color: #ebeff3;
+  box-sizing: border-box;
 }
 
 .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-    height: 80px;
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
 }
 
 .App-header {
-    background-color: #59aed0;
-    line-height: 50px;
-    padding: 10px;
-    color: white;
+  background-color: #59aed0;
+  line-height: 50px;
+  padding: 10px;
+  color: white;
 }
 
 .App-header h1 {
-    font-size: 36px;
-    margin: 10px auto;
+  font-size: 36px;
+  margin: 10px auto;
 }
 
 .App-title {
-    font-size: 1.5em;
+  font-size: 1.5em;
 }
 
 .App-intro {
-    font-size: large;
+  font-size: large;
 }
 
 .container {
-    display: inline-block;
-    width: 95%;
-    height: 600px;
-    background-color: #ebeff3;
-    position: relative;
-    margin: 20px auto 0 auto;
-    padding: 20px;
-    box-sizing: inherit;
+  display: inline-block;
+  width: 95%;
+  height: 600px;
+  background-color: #ebeff3;
+  position: relative;
+  margin: 20px auto 0 auto;
+  padding: 20px;
+  box-sizing: inherit;
 }
 
 .container>.inner {
-    display: flex;
-    flex-wrap: nowrap;
-    text-align: center;
-    width: 100%;
-    height: 100%;
-    box-sizing: inherit;
+  display: flex;
+  flex-wrap: nowrap;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  box-sizing: inherit;
 }
 
 .search-list {
-    display: block;
-    width: 30%;
-    height: 100%;
-    box-sizing: inherit;
-    margin-right: 20px;
+  display: block;
+  width: 30%;
+  height: 100%;
+  box-sizing: inherit;
+  margin-right: 20px;
 }
 
 .search-area {
-    position: relative;
-    width: 100%;
-    height: auto;
-    min-height: 50px;
-    display: flex;
-    flex-wrap: nowrap;
-    padding: 20px 10px;
-    box-sizing: border-box;
-    border-bottom: 1px solid #c2c3c7;
-    margin-bottom: 20px;
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-height: 50px;
+  display: flex;
+  flex-wrap: nowrap;
+  padding: 20px 10px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #c2c3c7;
+  margin-bottom: 20px;
 }
 
 .serach-input {
-    margin-right: 10px;
-    width: 70%;
+  width: 100%;
+  border-radius: 4px;
 }
 
 .search-btn {
-    width: 30%;
-    padding: 4px;
-    cursor: pointer;
+  width: 30%;
+  padding: 4px;
+  cursor: pointer;
 }
 
 .list {
-    display: block;
-    width: 100%;
-    height: 85%;
-    background-color: #fff;
-    padding: 20px 10px;
-    text-align: center;
-    box-sizing: inherit;
-    border-radius: 5px;
+  display: block;
+  width: 100%;
+  height: 85%;
+  background-color: #fff;
+  padding: 20px 10px;
+  text-align: center;
+  box-sizing: inherit;
+  border-radius: 5px;
 }
 
 .list-ol {
-    padding: 0px;
-    margin: 0px;
-    height: 100%;
-    font-size: 16px;
+  padding: 0px;
+  margin: 0px;
+  height: 100%;
+  font-size: 16px;
 }
 
 .list-ol>li {
-    line-height: 30px;
-    cursor: pointer;
-    padding: 10px 10px;
-    list-style-type: none;
-    white-space: pre-wrap;
-    display: flex;
-    flex-wrap: nowrap;
+  line-height: 30px;
+  cursor: pointer;
+  padding: 10px 10px;
+  list-style-type: none;
+  white-space: pre-wrap;
+  display: flex;
+  flex-wrap: nowrap;
 }
 
 .list-ol>li:hover {
-    background-color: #dcdee6;
+  background-color: #dcdee6;
 }
 
 .list-ol>li>.JPN {
-    width: 33%;
-    color: #333;
-    text-align: left;
+  width: 33%;
+  color: #333;
+  text-align: left;
 }
 
 .list-ol>li>.CHN {
-    width: 33%;
-    color: #8e9090;
-    text-align: left;
-    font-size: 12px;
+  width: 33%;
+  color: #8e9090;
+  text-align: left;
+  font-size: 12px;
 }
 
 .list-ol>li>.EN {
-    width: 33%;
-    color: #8e9090;
-    text-align: left;
-    font-size: 12px;
+  width: 33%;
+  color: #8e9090;
+  text-align: left;
+  font-size: 12px;
 }
 
 .list-ol>li>div {
-    /*padding:0 8px;*/
+  /*padding:0 8px;*/
 }
 
 .map {
-    display: block;
-    position: absolute;
-    width: 65%;
-    height: 93%;
-    box-sizing: inherit;
-    padding: 0px;
+  display: block;
+  position: absolute;
+  width: 65%;
+  height: 93%;
+  box-sizing: inherit;
+  padding: 0px;
+}
+
+.infowindow {
+  max-height: 260px;
+  max-width: 350px;
+}
+
+.infowindow ul {
+  padding: 4px;
+  list-style: none;
+  margin:0;
+  max-height: 270px;
+}
+
+.article {
+  text-align: left;
+  margin: 4px 0;
+}
+
+.article h4,
+p {
+  margin: 2px 0;
+}
+
+@media screen and (max-width: 320px) {
+  .App-header {
+    line-height: 20px;
+  }
+  .App-header h1 {
+    font-size: 24px;
+    margin: 8px auto;
+  }
+  .container {
+    padding: 10px;
+  }
+  .search-area {
+    padding: 10px 4px;
+  }
+  .serach-input {
+    width: 100%;
+    margin-right: 0;
+  }
+  .search-btn {
+    display: none;
+  }
+  .list {
+    padding: 10px 4px;
+  }
+  .list-ol {
+    height: 60%;
+  }
+  .list-ol>li {
+    padding: 10px 4px;
+  }
+  .list-ol>li>.JPN {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .CHN {
+    display: none;
+  }
+
+  .EN {
+    display: none;
+  }
 }
 
 @keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
