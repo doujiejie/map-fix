@@ -152,7 +152,8 @@ class App extends Component {
     return ( 
       <div className = "App" >
         <header className = "App-header" >
-        <h1 className = "App-title" > Street Map </h1></header> 
+          <h1 className = "App-title" aria-label="Street Map"> Street Map </h1>
+        </header> 
         <div className = "container" >
           <div className = "inner" >
             <List 

@@ -9,20 +9,21 @@ class List extends Component {
   	const { originData,listData,query,updateQuery} = this.props;
     return (
           <div className="search-list">
-          {JSON.stringify(query)}
+          {/*{JSON.stringify(query)}*/}
               <div className="search-area">
-                  <input 
-                    type="text" 
+                  <input
+                    tabIndex="0"
+                    type="text"
                     className="serach-input" 
                     value={ query } 
-                    placeholder="Search (ex : tokyo)"
+                    placeholder="Search station (for example : tokyo)"
                     onChange={(event)=>updateQuery(event.target.value,originData)}/>
               </div>
               <div className="list">
               {!query && (
                 <ol className="list-ol">
                 {originData.map((data) => (
-                  <li key={data.id}>
+                  <li key={data.id} tabIndex="0">
                     <div className="JPN">{data.title.JPN}</div>
                     <div className="CHN">(CHN: {data.title.CHN})</div>
                     <div className="EN">(EN: {data.title.EN})</div>
@@ -33,7 +34,7 @@ class List extends Component {
               {query && (
                 <ol className="list-ol">
                 {listData.map((data) => (
-                  <li key={data.id}>
+                  <li key={data.id} tabIndex="0">
                     <div className="JPN">{data.title.JPN}</div>
                     <div className="CHN">(CHN: {data.title.CHN})</div>
                     <div className="EN">(EN: {data.title.EN})</div>

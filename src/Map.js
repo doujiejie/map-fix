@@ -71,6 +71,7 @@ class Map extends Component {
     console.log('will update!!!')
   }
 
+  //load initial map
   loadMap() {
     const { google, originData } = this.props;
     if (this.props && this.props.google) {
@@ -88,6 +89,7 @@ class Map extends Component {
     }
   }
 
+  //init Marker and API infowindow
   setMarkerAndInfo = (data, thisMap) => {
     let markers = [];
     const { google, bounds } = this.props
@@ -96,24 +98,20 @@ class Map extends Component {
         position: data[i].position,
         map: thisMap,
         title: data[i].title.EN,
-        id: data[i].id
+        id: data[i].id,
+        "tabIndex": 0
       });
 
       const largeInfowindow = new google.maps.InfoWindow();
       marker.addListener('click', function() {
 
-        //在这里用第三方API
-        
+        //use API
         showAPI(this, largeInfowindow,thisMap);
       });
       markers.push(marker);
     };
     thisMap.fitBounds(bounds)
   };
-
-
-
-
 
   // showInfo = (marker,infowindow,thisMap) => {
   //         if (infowindow.marker !== marker) {
@@ -127,10 +125,8 @@ class Map extends Component {
   //   }
 
   render() {
-    console.log('render~~~~~')
-
     return ( 
-      <div ref = 'map' className = "map" id = "map"></div>
+      <div ref = 'map' className = "map" id = "map" role="application" tabIndex="-1"></div>
     );
   };
 };
