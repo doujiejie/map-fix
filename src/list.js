@@ -13,8 +13,9 @@ class List extends Component {
               <div className="search-area">
                   <input
                     tabIndex="0"
+                    aria-label= "input keyword to search the station"
                     type="text"
-                    className="serach-input" 
+                    className="search-input" 
                     value={ query } 
                     placeholder="Search station (for example : tokyo)"
                     onChange={(event)=>updateQuery(event.target.value,originData)}/>

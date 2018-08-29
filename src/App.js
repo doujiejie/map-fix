@@ -119,34 +119,47 @@ class App extends Component {
     }
 
 
-    showAPI(marker, infowindow) {
-        let searchedForText = marker.title.EN;
-        fetch(`http://api.nytimes.com/svc/search/v2/articlesearch.json?q=${searchedForText}&api-key=ed11ce69c5b2490e9a4c4e41e1aa686d`, {
-            // headers: {
-            //     Authorization: 'Client-ID bd18852d92f956937def8d7f0ab0f6d3fc1acf00cf096af4f143e2f1fd66fef0'
-            // }
-        }).then(response => response.json()).then(addArticles).catch(e => requestArticleError);
+  showAPI = (marker, infowindow,thisMap) => {
+    let searchedForText = marker.title;
+    fetch(`http://api.nytimes.com/svc/search/v2/articlesearch.json?q=${searchedForText}&api-key=ed11ce69c5b2490e9a4c4e41e1aa686d`, {
+      // headers: {
+      //     Authorization: 'Client-ID bd18852d92f956937def8d7f0ab0f6d3fc1acf00cf096af4f143e2f1fd66fef0'
+      // }
+    }).then(response => response.json()).then(addArticles).catch(e => requestArticleError);
 
-        function addArticles(data) {
-            let htmlContent = '';
-            // const data = JSON.parse(this.responseText);
-            if (data.response && data.response.docs && data.response.docs.length > 1) {
-                htmlContent = '<ul>' + data.response.docs.map(article => `<li class="article"> 
-                    <h2><a href="${article.web_url}">${article.headline.main}</a></h2>
-                    <p>${article.snippet}</p>
+
+    function addArticles(data) {
+    let htmlContent = '';
+    // const data = JSON.parse(this.responseText);
+    if (data.response && data.response.docs && data.response.docs.length > 1) {
+      htmlContent = '<ul className="info-ul">' + data.response.docs.map(article => 
+                    `<li class="article"> 
+                      <h4>
+                        <a role="link" tabIndex="0" href="${article.web_url}">
+                          ${article.headline.main}
+                        </a>
+                      </h4>
+                      <p>${article.snippet}</p>
                     </li>`).join('') + '</ul>';
 
-            } else {
-                htmlContent = ` < div class = "error-no-articles" > No articles available < /div>`;
-            }
-            infowindow.setContent(htmlContent);
-        };
+    } else {
+      htmlContent = `No articles available`;
+    }
+    if (infowindow.marker !== marker) {
+          infowindow.marker = marker;
+          infowindow.setContent('<div class="infowindow">' + htmlContent + '</div>');
+          infowindow.open(thisMap, marker);
+          infowindow.addListener('closeclick',function(){
+            infowindow.marker = null;
+          });
+        }
+  };
 
-        function requestArticleError(e, part) {
-            console.log(e);
-            infowindow.setContent(`<p class="network-warning">There was an error making a request for the ${part}.</p>`);
-        };
-}
+  function requestArticleError(e, part) {
+    console.log(e);
+    infowindow.setContent(`<p class="network-warning">There was an error making a request for the ${part}.</p>`);
+  };
+  }
 
   render() {
     return ( 
