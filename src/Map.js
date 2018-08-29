@@ -9,7 +9,7 @@ class Map extends Component {
 
   componentDidMount() {
     this.loadMap();
-    console.log('did mount!!!');
+    // console.log('did mount!!!');
   }
 
   componentDidUpdate() {
