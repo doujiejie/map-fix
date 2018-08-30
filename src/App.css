@@ -13,14 +13,27 @@
 
 .App-header {
   background-color: #59aed0;
-  line-height: 50px;
   padding: 10px;
   color: white;
+}
+
+.App-header>.menu {
+  width: 30px;
+  height: 30px;
+  font-size: 30px;
+  float: left;
+  padding: 5px 0
+}
+
+.App-header>.menu:hover {
+  cursor: pointer;
+  color: #2C62BA;
 }
 
 .App-header h1 {
   font-size: 36px;
   margin: 10px auto;
+  display: inline-block;
 }
 
 .App-title {
@@ -148,29 +161,38 @@
   height: 93%;
   box-sizing: inherit;
   /*padding: 10px 0;*/
-  float:right;
+  float: right;
+}
+
+.gm-style-iw {
+  /*max-height: 150px;*/
+  /*max-width: 160px;*/
 }
 
 .infowindow {
-  max-height: 260px;
-  max-width: 350px;
+  max-height: 150px;
+  max-width: 120px;
 }
 
 .infowindow ul {
-  padding: 4px;
+  padding: 2px 0;
   list-style: none;
   margin: 0;
-  max-height: 270px;
+  /*max-height: 270px;*/
 }
 
 .article {
   text-align: left;
-  margin: 4px 0;
+  margin: 2px 0;
 }
 
-.article h4,
+.article h5 {
+  margin: 1px 0;
+}
+
 p {
-  margin: 2px 0;
+  font-size: 11px;
+  margin: 0;
 }
 
 @media screen and (max-width: 319px) {
@@ -184,12 +206,10 @@ p {
   .container {
     padding: 10px;
   }
-
   .search-list {
     margin-right: 10px;
     height: 78%;
   }
-
   .search-area {
     padding: 10px 4px;
   }
@@ -206,24 +226,19 @@ p {
     width: 100%;
     font-size: 14px;
   }
-
   .CHN {
     display: none;
   }
-
   .EN {
     display: none;
   }
-
   .map {
     width: 60%;
     height: 75%;
   }
 }
 
-
 @media screen and (min-width: 320px) and (max-width: 767px) {
-
   .App-header {
     line-height: 20px;
   }
@@ -236,47 +251,42 @@ p {
     margin: 0 auto;
     padding: 10px;
   }
-
   .search-list {
     margin-right: 10px;
     width: 25%;
     height: 78%;
   }
-
-  .map {
-    width: 70%;
-    height: 75%;
+  .hidden-mobile {
+    display: none;
   }
-
+  .map {
+    width: 95%;
+    /*height: 75%;*/
+  }
   .list-ol>li>.JPN {
     width: 100%;
     font-size: 14px;
     text-align: center;
   }
-
   .list-ol>li>.CHN {
     display: none;
   }
-
   .list-ol>li>.EN {
     display: none;
   }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1279px) {
-
   .list-ol>li>.JPN {
     width: 40%;
     font-size: 14px;
     text-align: left;
   }
-
   .list-ol>li>.CHN {
     width: 60%;
     font-size: 14px;
     text-align: left;
   }
-
   .list-ol>li>.EN {
     /*width: 70%;*/
     display: none;
@@ -284,27 +294,22 @@ p {
 }
 
 @media screen and (min-width: 1280px) and (max-width: 1439px) {
-
   .search-list {
     width: 30%;
   }
-
   .list-ol>li>.JPN {
     width: 40%;
     font-size: 14px;
     text-align: left;
   }
-
   .list-ol>li>.CHN {
     display: none;
   }
-
   .list-ol>li>.EN {
     width: 60%;
     font-size: 14px;
     text-align: left;
   }
-
   .map {
     width: 75%;
   }

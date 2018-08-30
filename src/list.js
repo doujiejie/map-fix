@@ -8,7 +8,7 @@ class List extends Component {
   render() {
   	const { originData,listData,query,updateQuery} = this.props;
     return (
-          <div className="search-list">
+          <div className="search-list hidden-mobile">
           {/*{JSON.stringify(query)}*/}
               <div className="search-area">
                   <input

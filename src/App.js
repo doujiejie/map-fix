@@ -134,11 +134,11 @@ class App extends Component {
     if (data.response && data.response.docs && data.response.docs.length > 1) {
       htmlContent = '<ul className="info-ul">' + data.response.docs.map(article => 
                     `<li class="article"> 
-                      <h4>
+                      <h5>
                         <a role="link" tabIndex="0" href="${article.web_url}">
                           ${article.headline.main}
                         </a>
-                      </h4>
+                      </h5>
                       <p>${article.snippet}</p>
                     </li>`).join('') + '</ul>';
 
@@ -165,6 +165,7 @@ class App extends Component {
     return ( 
       <div className = "App" >
         <header className = "App-header" >
+          <div className = "menu">☰</div>
           <h1 className = "App-title" aria-label="Street Map"> Street Map </h1>
         </header> 
         <div className = "container" >
