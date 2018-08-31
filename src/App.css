@@ -213,50 +213,7 @@ p {
   margin: 0;
 }
 
-@media screen and (max-width: 319px) {
-  .App-header {
-    line-height: 20px;
-  }
-  .App-header h1 {
-    font-size: 24px;
-    margin: 8px auto;
-  }
-  .container {
-    padding: 10px;
-  }
-  .search-list {
-    margin-right: 10px;
-    height: 78%;
-  }
-  .search-area {
-    padding: 10px 4px;
-  }
-  .list {
-    padding: 10px 4px;
-  }
-  .list-ol {
-    height: 60%;
-  }
-  .list-ol>li {
-    padding: 10px 4px;
-  }
-  .list-ol>li>.JPN {
-    width: 100%;
-    font-size: 14px;
-  }
-  .CHN {
-    display: none;
-  }
-  .EN {
-    display: none;
-  }
-  .map {
-    width: 60%;
-    height: 75%;
-  }
-}
-
-@media screen and (min-width: 320px) and (max-width: 767px) {
+@media screen and (max-width: 767px) {
   .App-header {
     line-height: 20px;
   }
