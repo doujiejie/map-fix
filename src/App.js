@@ -9,7 +9,7 @@ import escapeRegExp from 'escape-string-regexp'
 class App extends Component {
 
   state = {
-    query:"",
+    query: "",
     data: [{
         "id": "tokyo",
         "title": {
@@ -118,6 +118,7 @@ class App extends Component {
       })
     }
 
+  
 
   showAPI = (marker, infowindow,thisMap) => {
     let searchedForText = marker.title;
@@ -165,7 +166,6 @@ class App extends Component {
     return ( 
       <div className = "App" >
         <header className = "App-header" >
-          <div className = "menu">☰</div>
           <h1 className = "App-title" aria-label="Street Map"> Street Map </h1>
         </header> 
         <div className = "container" >
@@ -178,6 +178,7 @@ class App extends Component {
             updateQuery = {this.updateQuery}
             clearQuery = {this.clearQuery}
             showAPI = {this.showAPI}
+            display = {this.state.display}
             />
             <GoogleAPI 
             originData = { this.state.data } 
@@ -188,6 +189,7 @@ class App extends Component {
             clearQuery={this.clearQuery}
             showWiki={this.showWiki}
             showAPI = {this.showAPI}
+            display = {this.state.display}
             /> 
           </div>
         </div>

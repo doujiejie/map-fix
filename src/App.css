@@ -17,19 +17,6 @@
   color: white;
 }
 
-.App-header>.menu {
-  width: 30px;
-  height: 30px;
-  font-size: 30px;
-  float: left;
-  padding: 5px 0
-}
-
-.App-header>.menu:hover {
-  cursor: pointer;
-  color: #2C62BA;
-}
-
 .App-header h1 {
   font-size: 36px;
   margin: 10px auto;
@@ -46,12 +33,12 @@
 
 .container {
   display: inline-block;
-  width: 95%;
+  width: 100%;
   height: 600px;
   /*background-color: #ebeff3;*/
   position: relative;
-  margin: 20px auto 0 auto;
-  padding: 20px;
+  margin: 0;
+  padding: 0;
   box-sizing: inherit;
 }
 
@@ -69,7 +56,39 @@
   width: 30%;
   height: 100%;
   box-sizing: inherit;
-  margin-right: 20px;
+  padding: 10px 20px;
+}
+
+.search-list>.menu {
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  font-size: 30px;
+  top: 5px;
+  color: #fff;
+  visibility: hidden;
+}
+
+.search-list>.menu:hover {
+  cursor: pointer;
+  color: #8F8F8F;
+}
+
+.close {
+  width: 30px;
+  height: 30px;
+  font-size: 15px;
+  margin-top: -4px;
+  margin-right: -20px;
+  float: right;
+  cursor: pointer;
+  visibility: hidden;
+  font-weight: bold;
+}
+
+.close:hover {
+  color: #8F8F8F;
+  cursor: pointer;
 }
 
 .search-area {
@@ -157,10 +176,9 @@
 .map {
   display: block;
   position: absolute;
-  width: 65%;
+  width: 70%;
   height: 93%;
   box-sizing: inherit;
-  /*padding: 10px 0;*/
   float: right;
 }
 
@@ -249,19 +267,35 @@ p {
   .container {
     height: 600px;
     margin: 0 auto;
-    padding: 10px;
+    width: 100%;
+    padding-left: 0;
   }
   .search-list {
-    margin-right: 10px;
-    width: 25%;
-    height: 78%;
+    width: 200px;
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    border-radius: 0 6px 6px 0;
+    background-color: #fff;
+    left: -200px;
   }
-  .hidden-mobile {
-    display: none;
+  .search-list>.menu {
+    visibility: visible;
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    font-size: 30px;
+    top: 5px;
+    margin-left: 200px;
+    color: #fff;
+  }
+  .close {
+    visibility: visible;
   }
   .map {
-    width: 95%;
-    /*height: 75%;*/
+    width: 100%;
+    right: 0;
+    height: 100%;
   }
   .list-ol>li>.JPN {
     width: 100%;
