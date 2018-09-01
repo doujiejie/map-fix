@@ -4,33 +4,62 @@ import ReactDOM from 'react-dom'
 class Map extends Component {
 
   state = {
-    map: []
+    map: [],
+    markers: [],
   }
 
   componentDidMount() {
-    this.loadMap();
+    this.loadMap(this.props.listData);
     // console.log('did mount!!!');
   }
 
-  componentDidUpdate() {
-    let map;
-    const { google, listData } = this.props;
-    const mapRef = this.refs.map;
-    const node = ReactDOM.findDOMNode(mapRef);
-    const { lat, lng, zoom } = this.props.init;
-    const center = new google.maps.LatLng(lat, lng);
-    const mapConfig = Object.assign({}, {
-      center: center,
-      zoom: zoom
-    })
-    map = new google.maps.Map(node, mapConfig);
-    this.setMarkerAndInfo(listData, map)
-    console.log('will update!!!')
+  // componentDidUpdate() {
+  //   let map;
+  //   const { google, listData } = this.props;
+  //   const mapRef = this.refs.map;
+  //   const node = ReactDOM.findDOMNode(mapRef);
+  //   const { lat, lng, zoom } = this.props.init;
+  //   const center = new google.maps.LatLng(lat, lng);
+  //   const mapConfig = Object.assign({}, {
+  //     center: center,
+  //     zoom: zoom
+  //   })
+  //   map = new google.maps.Map(node, mapConfig);
+  //   this.setMarkerAndInfo(listData, map)
+  //   console.log('will update!!!')
+  // }
+
+  componentWillReceiveProps(nextProps){
+    const { markers } = this.state;
+    const { google } = this.props;
+    // console.log(this.props.clickedData)
+    // console.log(nextProps.clickedData)
+    if(this.props.clickedData !== nextProps.clickedData){
+      console.log('clickedData changed!!!')
+      console.log(nextProps.clickedData)
+
+      for(let i=0;i<markers.length;i++){
+        if((markers[i].title) === nextProps.clickedData){
+          console.log(markers[i].title);
+          this.setState({
+            marker: markers[i]
+          },()=>{
+            google.maps.event.trigger(this.state.marker, 'click');
+          })
+        }
+      }
+    }
+    
+    // console.log(this.props.listData)
+    // console.log(nextProps.listData)
+    if(this.props.listData !== nextProps.listData){
+        this.loadMap(nextProps.listData);
+    }
   }
 
   //load initial map
-  loadMap() {
-    const { google, originData } = this.props;
+  loadMap(data) {
+    const { google } = this.props;
     if (this.props && this.props.google) {
       let map;
       const mapRef = this.refs.map;
@@ -42,7 +71,7 @@ class Map extends Component {
         zoom: zoom
       })
       map = new google.maps.Map(node, mapConfig);
-      this.setMarkerAndInfo(originData, map)
+      this.setMarkerAndInfo(data, map)
     }
   }
 
@@ -61,13 +90,17 @@ class Map extends Component {
 
       const largeInfowindow = new google.maps.InfoWindow();
       marker.addListener('click', function() {
+        console.log(this)
 
         //use API
         showAPI(this, largeInfowindow,thisMap);
       });
       markers.push(marker);
     };
-    thisMap.fitBounds(bounds)
+    thisMap.fitBounds(bounds);
+    this.setState({
+      markers: markers
+    })
   };
 
   // showInfo = (marker,infowindow,thisMap) => {

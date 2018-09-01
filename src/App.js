@@ -94,15 +94,94 @@ class App extends Component {
       lng: 139.7828336,
       zoom: 13
     },
-    listData:[]
+    clickedData:[],
+    listData:[{
+        "id": "tokyo",
+        "title": {
+          "CHN": "东京站",
+          "JPN": "東京駅",
+          "EN": "tokyo station"
+        },
+        "map": "",
+        "position": {
+          "lat": 35.681167,
+          "lng": 139.7670516
+        }
+      },
+      {
+        "id": "sinjyuku",
+        "title": {
+          "CHN": "新宿站",
+          "JPN": "新宿駅",
+          "EN": "sinjuku station"
+        },
+        "map": "",
+        "position": {
+          "lat": 35.6895924,
+          "lng": 139.7004131
+        }
+      },
+      {
+        "id": "ikebukuro",
+        "title": {
+          "CHN": "池袋站",
+          "JPN": "池袋駅",
+          "EN": "ikebukuro station"
+        },
+        "map": "",
+        "position": {
+          "lat": 35.7295028,
+          "lng": 139.7109001
+        }
+      },
+      {
+        "id": "shibuya",
+        "title": {
+          "CHN": "涩谷站",
+          "JPN": "渋谷駅",
+          "EN": "shibuya station"
+        },
+        "map": "",
+        "position": {
+          "lat": 35.6580339,
+          "lng": 139.7016358
+        }
+      },
+      {
+        "id": "harajyuku",
+        "title": {
+          "CHN": "原宿站",
+          "JPN": "原宿駅",
+          "EN": "harajuku station"
+        },
+        "map": "",
+        "position": {
+          "lat": 35.6702285,
+          "lng": 139.7026976
+        }
+      },
+      {
+        "id": "ginza",
+        "title": {
+          "CHN": "银座站",
+          "JPN": "銀座駅",
+          "EN": "ginza station"
+        },
+        "map": "",
+        "position": {
+          "lat": 35.6717519,
+          "lng": 139.7643082
+        }
+      }
+    ]
   }
 
-  updateQuery = (query,originData) => {
+  updateQuery = (query) => {
     var dataInList;
     const match = new RegExp(escapeRegExp(query), 'i');
 
     if (query!=="") {
-      dataInList = originData.filter(
+      dataInList = this.state.data.filter(
         (data) => match.test(data.title.EN+data.title.CHN+data.title.JPN));
       this.setState({
         listData: dataInList
@@ -110,13 +189,19 @@ class App extends Component {
     } 
     else {
       this.setState({
-        listData: originData
+        listData: this.state.data
       })
     }
       this.setState({
       query: query.trim(),
       })
     }
+
+  listClick = (event) => {
+    this.setState({
+      clickedData: event.target.id
+    })
+  }
 
   
 
@@ -179,6 +264,8 @@ class App extends Component {
             clearQuery = {this.clearQuery}
             showAPI = {this.showAPI}
             display = {this.state.display}
+            clickedData = {this.state.clickedData}
+            listClick = {this.listClick}
             />
             <GoogleAPI 
             originData = { this.state.data } 
@@ -190,6 +277,7 @@ class App extends Component {
             showWiki={this.showWiki}
             showAPI = {this.showAPI}
             display = {this.state.display}
+            clickedData = {this.state.clickedData}
             /> 
           </div>
         </div>

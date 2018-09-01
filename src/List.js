@@ -9,11 +9,10 @@ class List extends Component {
     display: ""
   }
 
-  openSideBar = (style,state) => {
+  openSideBar = () => {
     this.setState({
       display: true
     })
-    console.log(this.state.display)
   }
 
   closeSideBar = () => {
@@ -23,7 +22,7 @@ class List extends Component {
   }
 
   render() {
-  	const { originData,listData,query,updateQuery} = this.props;
+  	const {listData,query,updateQuery,listClick} = this.props;
     const { display } = this.state;
     return (
           <div className="search-list" style={{left: display?0:-200}}>
@@ -38,31 +37,18 @@ class List extends Component {
                     className="search-input"
                     value={ query } 
                     placeholder="Search station (for example : tokyo)"
-                    onChange={(event)=>updateQuery(event.target.value,originData)}/>
+                    onChange={(event)=>updateQuery(event.target.value,listData)}/>
               </div>
               <div className="list">
-              {!query && (
-                <ol className="list-ol">
-                {originData.map((data) => (
-                  <li key={data.id} tabIndex="0">
-                    <div className="JPN">{data.title.JPN}</div>
-                    <div className="CHN">(CHN: {data.title.CHN})</div>
-                    <div className="EN">(EN: {data.title.EN})</div>
-                  </li>
-                  ))}
-                </ol>
-              )}
-              {query && (
                 <ol className="list-ol">
                 {listData.map((data) => (
-                  <li key={data.id} tabIndex="0">
-                    <div className="JPN">{data.title.JPN}</div>
-                    <div className="CHN">(CHN: {data.title.CHN})</div>
-                    <div className="EN">(EN: {data.title.EN})</div>
+                  <li key={data.id} id={data.title.EN} tabIndex="0" onClick={listClick}>
+                    <div className="JPN" id={data.title.EN}>{data.title.JPN}</div>
+                    <div className="CHN" id={data.title.EN}>(CHN: {data.title.CHN})</div>
+                    <div className="EN" id={data.title.EN}>(EN: {data.title.EN})</div>
                   </li>
                   ))}
                 </ol>
-              )}
               </div>
             </div>
             )}}

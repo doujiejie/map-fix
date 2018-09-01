@@ -27,6 +27,7 @@ return (
           query ={query}
           updateQuery={updateQuery}
           showAPI={showAPI}
+          clickedData = {this.props.clickedData}
         >
         </Map>
 
