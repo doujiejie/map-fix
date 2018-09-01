@@ -242,7 +242,7 @@ class App extends Component {
   };
 
   function requestArticleError(e, part) {
-    console.log(e);
+    // console.log(e);
     infowindow.setContent(`<p class="network-warning">There was an error making a request for the ${part}.</p>`);
   };
   }

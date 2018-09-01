@@ -35,12 +35,12 @@ class Map extends Component {
     // console.log(this.props.clickedData)
     // console.log(nextProps.clickedData)
     if(this.props.clickedData !== nextProps.clickedData){
-      console.log('clickedData changed!!!')
-      console.log(nextProps.clickedData)
+      // console.log('clickedData changed!!!')
+      // console.log(nextProps.clickedData)
 
       for(let i=0;i<markers.length;i++){
         if((markers[i].title) === nextProps.clickedData){
-          console.log(markers[i].title);
+          // console.log(markers[i].title);
           this.setState({
             marker: markers[i]
           },()=>{
@@ -90,7 +90,7 @@ class Map extends Component {
 
       const largeInfowindow = new google.maps.InfoWindow();
       marker.addListener('click', function() {
-        console.log(this)
+        // console.log(this)
 
         //use API
         showAPI(this, largeInfowindow,thisMap);
